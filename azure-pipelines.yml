@@ -8,6 +8,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-18.04
+  #name: myAgent
 
 steps:
 - task: NodeTool@0
@@ -19,3 +20,8 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'myArtifact'
+    publishLocation: 'Container'
